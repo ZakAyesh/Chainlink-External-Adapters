@@ -12,7 +12,7 @@ const customError = (data) => {
 // with a Boolean value indicating whether or not they
 // should be required.
 const customParams = {
-  city: ["q", "city", "town"],
+  rankingType: ["ranking", "500", "ranl"],
   endpoint: false,
 };
 
@@ -20,14 +20,14 @@ const createRequest = (input, callback) => {
   // The Validator helps you validate the Chainlink request data
   const validator = new Validator(callback, input, customParams);
   const jobRunID = validator.validated.id;
-  const endpoint = validator.validated.data.endpoint || "weather";
-  const url = `https://api.openweathermap.org/data/2.5/${endpoint}`;
-  const q = validator.validated.data.city.toUpperCase();
+  const endpoint = validator.validated.data.endpoint || "ranking";
+  const url = `https://api.myanimelist.net/v2/anime/${endpoint}`;
+  const q = validator.validated.data.rankingType.toUpperCase();
   const appid = process.env.API_KEY;
 
   const params = {
-    q,
-    appid,
+    ranking_type,
+    limit,
   };
 
   // This is where you would add method and headers
