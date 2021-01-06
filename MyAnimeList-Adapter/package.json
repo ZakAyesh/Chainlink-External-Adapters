@@ -9,7 +9,10 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "@chainlink/external-adapter": "^0.2.3"
+    "@chainlink/external-adapter": "^0.2.3",
+    "base64url": "^3.0.1",
+    "randomstring": "^1.1.5",
+    "simple-oauth2": "^4.2.0"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",

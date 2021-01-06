@@ -1,5 +1,7 @@
 const { Requester, Validator } = require("@chainlink/external-adapter");
 
+var bearerToken;
+
 // Define custom error scenarios for the API.
 // Return true for the adapter to retry.
 const customError = (data) => {
@@ -12,7 +14,8 @@ const customError = (data) => {
 // with a Boolean value indicating whether or not they
 // should be required.
 const customParams = {
-  rankingType: ["ranking", "500", "ranl"],
+  ranking_Type: ["ranking", "500", "rank"],
+  limit: ["limit"],
   endpoint: false,
 };
 
@@ -22,14 +25,15 @@ const createRequest = (input, callback) => {
   const jobRunID = validator.validated.id;
   const endpoint = validator.validated.data.endpoint || "ranking";
   const url = `https://api.myanimelist.net/v2/anime/${endpoint}`;
-  const q = validator.validated.data.rankingType.toUpperCase();
-  const appid = process.env.API_KEY;
+  const ranking_type = validator.validated.data.rankingType.toLowerCase();
+  const limit = validator.validated.data.limit;
 
   const params = {
     ranking_type,
     limit,
   };
 
+  const headers = `Authorization: Bearer ${bearerToken}`;
   // This is where you would add method and headers
   // you can add method like GET or POST and add it to the config
   // The default is GET requests
@@ -38,6 +42,7 @@ const createRequest = (input, callback) => {
   const config = {
     url,
     params,
+    headers,
   };
 
   // The Requester allows API calls be retry in case of timeout
@@ -89,3 +94,4 @@ exports.handlerv2 = (event, context, callback) => {
 // This allows the function to be exported for testing
 // or for running in express
 module.exports.createRequest = createRequest;
+module.exports.bearerToken = bearerToken;
