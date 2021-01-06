@@ -1,5 +1,5 @@
 const createRequest = require("./index").createRequest;
-var bearerToken = require("./index").bearerToken;
+const setBearerToken = require("./index").setBearerToken;
 const randomstring = require("randomstring");
 const { AuthorizationCode } = require("simple-oauth2");
 
@@ -52,8 +52,8 @@ app.get("/callback", async (req, res) => {
 
   try {
     const accessToken = await client.getToken(tokenParams, { json: true });
-    bearerToken = accessToken;
     console.log("Access Token is: ", accessToken);
+    setBearerToken(accessToken.token.access_token);
   } catch (error) {
     console.log("Access Token Error", error);
     console.log("Access Token Error", error.message);
