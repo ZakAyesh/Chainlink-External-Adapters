@@ -1,5 +1,5 @@
 const createRequest = require("./index").createRequest;
-const { auth, cb } = require("./oauth");
+const { auth, cb, refresh } = require("./oauth");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
@@ -17,6 +17,7 @@ app.get("/callback", (req, res) => {
 
 app.post("/", (req, res) => {
   console.log("POST Data: ", req.body);
+  refresh();
   createRequest(req.body, (status, result) => {
     console.log("Result: ", result);
     res.status(status).json(result);

@@ -1,14 +1,9 @@
 const { Requester, Validator } = require("@chainlink/external-adapter");
 
 let bearerToken;
-let refreshToken;
 
 const setBearerToken = (token) => {
   bearerToken = token;
-};
-
-const setRefreshToken = (token) => {
-  refreshToken = token;
 };
 
 // Define custom error scenarios for the API.
@@ -113,4 +108,3 @@ exports.handlerv2 = (event, context, callback) => {
 // or for running in express
 module.exports.createRequest = createRequest;
 module.exports.setBearerToken = setBearerToken;
-module.exports.setRefreshToken = setRefreshToken;
