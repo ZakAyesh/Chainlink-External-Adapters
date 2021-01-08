@@ -1,11 +1,8 @@
-const setBearerToken = require("./index").setBearerToken;
+const { setBearerToken, setRefreshToken } = require("./index");
 const randomstring = require("randomstring");
 const { AuthorizationCode } = require("simple-oauth2");
 
 let code_verifier = randomstring.generate(100);
-
-let bearerToken;
-let refreshToken;
 
 const config = {
   client: {
@@ -49,6 +46,7 @@ const cb = async (req, res) => {
     const accessToken = await client.getToken(tokenParams, { json: true });
     console.log("Access Token is: ", accessToken);
     setBearerToken(accessToken.token.access_token);
+    setRefreshToken(accessToken.token.refresh_token);
   } catch (error) {
     console.log("Access Token Error", error);
     console.log("Access Token Error", error.message);

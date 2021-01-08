@@ -1,9 +1,14 @@
 const { Requester, Validator } = require("@chainlink/external-adapter");
 
-var bearerToken;
+let bearerToken;
+let refreshToken;
 
 const setBearerToken = (token) => {
   bearerToken = token;
+};
+
+const setRefreshToken = (token) => {
+  refreshToken = token;
 };
 
 // Define custom error scenarios for the API.
@@ -24,6 +29,11 @@ const customParams = {
 };
 
 const createRequest = (input, callback) => {
+  if (bearerToken == undefined) {
+    console.log(
+      "Bearer Token hasn't been set call /authorize on this adapter from browser"
+    );
+  }
   // The Validator helps you validate the Chainlink request data
   const validator = new Validator(callback, input, customParams);
   const jobRunID = validator.validated.id;
@@ -60,10 +70,10 @@ const createRequest = (input, callback) => {
       // It's common practice to store the desired value at the top-level
       // result key. This allows different adapters to be compatible with
       // one another.
-      response.data.result = Requester.validateResultNumber(response.data.data[0], [
-        "ranking",
-        "rank",
-      ]);
+      response.data.result = Requester.validateResultNumber(
+        response.data.data[0],
+        ["ranking", "rank"]
+      );
       callback(response.status, Requester.success(jobRunID, response));
     })
     .catch((error) => {
@@ -103,3 +113,4 @@ exports.handlerv2 = (event, context, callback) => {
 // or for running in express
 module.exports.createRequest = createRequest;
 module.exports.setBearerToken = setBearerToken;
+module.exports.setRefreshToken = setRefreshToken;
