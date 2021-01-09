@@ -57,7 +57,7 @@ const cb = async (req, res) => {
   }
 };
 
-const refresh = async () => {
+const refreshAccessToken = async () => {
   if (accessToken.expired()) {
     try {
       const refreshParams = {
@@ -65,14 +65,17 @@ const refresh = async () => {
         refresh_token: refreshToken,
       };
       accessToken = await accessToken.refresh(refreshParams);
+      console.log("Refreshed Access Token is: ", accessToken);
       refreshToken = accessToken.token.refresh_token;
       setBearerToken(accessToken.token.access_token);
     } catch (error) {
       console.log("Error refreshing access token: ", error.message);
     }
+  } else {
+    console.log("Access Token has not expired.");
   }
 };
 
 module.exports.auth = auth;
 module.exports.cb = cb;
-module.exports.refresh = refresh;
+module.exports.refreshAccessToken = refreshAccessToken;
