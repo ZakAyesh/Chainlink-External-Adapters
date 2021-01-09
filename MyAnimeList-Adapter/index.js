@@ -18,8 +18,8 @@ const customError = (data) => {
 // with a Boolean value indicating whether or not they
 // should be required.
 const customParams = {
-  ranking_type: ["ranking", "500", "rank", "ranking_type"],
-  limit: ["limit"],
+  ranking_type: ["type", "ranking_type", "animetype"],
+  rank: ["rank", "ranking"],
   endpoint: false,
 };
 
@@ -35,11 +35,11 @@ const createRequest = (input, callback) => {
   const endpoint = validator.validated.data.endpoint || "ranking";
   const url = `https://api.myanimelist.net/v2/anime/${endpoint}`;
   const ranking_type = validator.validated.data.ranking_type.toLowerCase();
-  const limit = validator.validated.data.limit;
+  const rank = validator.validated.data.rank - 1;
 
   const params = {
     ranking_type,
-    limit,
+    limit: 500,
   };
 
   const headers = {
@@ -66,8 +66,8 @@ const createRequest = (input, callback) => {
       // result key. This allows different adapters to be compatible with
       // one another.
       response.data.result = Requester.validateResultNumber(
-        response.data.data[0],
-        ["ranking", "rank"]
+        response.data.data[rank],
+        ["node", "id"]
       );
       callback(response.status, Requester.success(jobRunID, response));
     })
