@@ -18,8 +18,8 @@ const customError = (data) => {
 // with a Boolean value indicating whether or not they
 // should be required.
 const customParams = {
-  ranking_type: ["type", "ranking_type", "animetype"],
-  rank: ["rank", "ranking"],
+  ranking_type: ["type", "ranking_type", "anime_type"],
+  rank: ["rank", "ranking", "ranked"],
   endpoint: false,
 };
 
