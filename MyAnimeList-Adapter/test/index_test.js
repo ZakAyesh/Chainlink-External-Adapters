@@ -11,19 +11,19 @@ describe("createRequest", () => {
     const requests = [
       {
         name: "id not supplied",
-        testData: { data: { ranking_type: "all", rank: "1" } },
+        testData: { data: { ranking_type: "all", rank: 1 } },
       },
       {
         name: "ranking_type/rank",
-        testData: { id: jobID, data: { ranking_type: "all", rank: "1" } },
+        testData: { id: jobID, data: { ranking_type: "all", rank: 1 } },
       },
       {
         name: "type/ranking",
-        testData: { id: jobID, data: { type: "all", ranking: "1" } },
+        testData: { id: jobID, data: { type: "all", ranking: 1 } },
       },
       {
         name: "anime_type/ranked",
-        testData: { id: jobID, data: { anime_type: "all", ranked: "1" } },
+        testData: { id: jobID, data: { anime_type: "all", ranked: 1 } },
       },
     ];
 
@@ -48,20 +48,23 @@ describe("createRequest", () => {
       { name: "empty body", testData: {} },
       { name: "empty data", testData: { data: {} } },
       {
-        name: "base not supplied",
-        testData: { id: jobID, data: { quote: "USD" } },
+        name: "ranking_type not supplied",
+        testData: { id: jobID, data: { rank: 1 } },
       },
       {
-        name: "quote not supplied",
-        testData: { id: jobID, data: { base: "ETH" } },
+        name: "rank not supplied",
+        testData: { id: jobID, data: { ranking_type: "all" } },
       },
       {
-        name: "unknown base",
-        testData: { id: jobID, data: { base: "not_real", quote: "USD" } },
+        name: "unknown ranking_type",
+        testData: { id: jobID, data: { ranking_type: "asdfasdf", rank: 1 } },
       },
       {
-        name: "unknown quote",
-        testData: { id: jobID, data: { base: "ETH", quote: "not_real" } },
+        name: "unknown rank",
+        testData: {
+          id: jobID,
+          data: { ranking_type: "all", rank: -1000 },
+        },
       },
     ];
 
