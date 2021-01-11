@@ -1,7 +1,7 @@
 name: MyAnimeList
-description: This adapter was designed to allow the consumer to request a type of anime (movie, tv show, airing) and ranking (1 , 2 , 3....) to query the top 500 anime of that type and return the animeId of the anime at that rank.
+description: Request a type of anime and ranking to query the top 500 anime of that type and return the animeId of the anime at that rank.
 
-node_identifier: N/A
+node_identifier: MAL
 
 platforms:
   - Docker
