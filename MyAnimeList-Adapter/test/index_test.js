@@ -3,7 +3,7 @@ const { createRequest, setBearerToken } = require("../index.js");
 
 // Set your BearerToken in .envrc file before running tests.
 // You can get the BearerToken by going through auth workflow in API and
-// taking copying AccessToken.access_token from the console.
+// copying AccessToken.access_token from the console.
 describe("createRequest", () => {
   const jobID = "1";
 
