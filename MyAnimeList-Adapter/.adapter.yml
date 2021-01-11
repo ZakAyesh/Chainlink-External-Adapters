@@ -8,7 +8,7 @@ platforms:
 
 data_sources:
   - name: MyAnimeList
-    url: https://myanimelist.net/
+    url: https://api.myanimelist.net/v2/anime/ranking
 
 parameters:
   - ranking_type
