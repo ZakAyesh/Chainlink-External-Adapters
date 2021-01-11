@@ -16,7 +16,7 @@ Result:  {
   "jobRunID": 1,
   "data": {
     "data": [
-      [Object], [Object], [Object], [Object], [Object], [Object],
+      "[Object], [Object], [Object], [Object], [Object], [Object],
       [Object], [Object], [Object], [Object], [Object], [Object],
       [Object], [Object], [Object], [Object], [Object], [Object],
       [Object], [Object], [Object], [Object], [Object], [Object],
@@ -33,10 +33,10 @@ Result:  {
       [Object], [Object], [Object], [Object], [Object], [Object],
       [Object], [Object], [Object], [Object], [Object], [Object],
       [Object], [Object], [Object], [Object],
-      ... 400 more items
+      ... 400 more items "
     ],
     "paging": {
-      "next": 'https://api.myanimelist.net/v2/anime/ranking?offset=500&ranking_type=all&limit=500'
+      "next": "https://api.myanimelist.net/v2/anime/ranking?offset=500&ranking_type=all&limit=500"
     },
     "result": 5114
   },
