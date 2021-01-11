@@ -1,6 +1,6 @@
 # MyAnimeList NodeJS External Adapter
 
-This is an external adapter for the Chainlink decentralized oracle network that allows Chainlink nodes to access anime data from the MyAnimeList (MAL). MAL's API utilizes Authorization Code Grant with PKCE style OAuth2.0 for authorization.
+This is an external adapter for the Chainlink decentralized oracle network that allows Chainlink nodes to access anime data from MyAnimeList (MAL). MAL's API utilizes Authorization Code Grant with PKCE style OAuth2.0 for authorization.
 
 Specifically this adapter was designed to allow the consumer to request a type of anime (movie, tv show, airing) and ranking (1 , 2 , 3....) to query the top 500 anime of that type and return the animeId of the anime at that rank.
 
